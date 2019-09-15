@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "922010160491",
+    "firebase_url": "https://urbano-252820.firebaseio.com",
+    "project_id": "urbano-252820",
+    "storage_bucket": "urbano-252820.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922010160491:android:b767812e1c409970b9102e",
+        "android_client_info": {
+          "package_name": "br.edu.ifpe.tads.pdm.urbano"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922010160491-ekgfn8m607v037qr35da2tjk3260gb55.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.edu.ifpe.tads.pdm.urbano",
+            "certificate_hash": "11b05ac8f6cbc105aae111d7585efe6e24d2ebff"
+          }
+        },
+        {
+          "client_id": "922010160491-8hpho4ac1h7baochjb83jccsk2sj69v1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWz-s0FiJtlYbKAGJRxhiH1SApgpvFM-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922010160491-8hpho4ac1h7baochjb83jccsk2sj69v1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

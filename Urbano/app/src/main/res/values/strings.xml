@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Urbano</string>
     <string name="title_activity_maps">Map</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_email">Email</string>
+    <string name="edit_password">Senha</string>
+    <string name="btn_cadastro">Cadastrar</string>
+    <string name="btn_login">Logar</string>
 </resources>

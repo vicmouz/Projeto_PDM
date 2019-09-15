@@ -9,8 +9,11 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,14 +22,21 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Date;
+
+import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener {
 
     private GoogleMap mMap;
     private int FINE_LOCATION_REQUEST;
     private boolean fine_location;
+    FirebaseAuth mAuth;
+    FirebaseAuthListener authListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         requestPermission();
+
+        this.mAuth = FirebaseAuth.getInstance();
+        this.authListener = new FirebaseAuthListener(this);
     }
 
 
@@ -117,6 +130,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fine_location = (requestCode == FINE_LOCATION_REQUEST) && granted;
 
         mMap.setMyLocationEnabled(fine_location);
+        findViewById(R.id.button_location).setEnabled(fine_location);
     }
 
     @Override
@@ -130,4 +144,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return false;
     }
 
+    public void currentLocation(View view) {
+        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        Task<Location> task = fusedLocationProviderClient.getLastLocation();
+
+        task.addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if(location!=null) {
+                    Toast.makeText(MapsActivity.this, "Localização atual: Latitude = " +
+                            location.getLatitude() + " Longitude = " +
+                            location.getLongitude(), Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authListener);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(authListener);
+    }
 }

@@ -16,7 +16,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_goToMaps"
+        android:text="Mapa"
+        android:onClick="buttonMapsClick"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_sair"
-        android:text="Deslogar"
+        android:text="@string/btn_deslogar"
         android:onClick="buttonSignOutClick"/>
+
 </LinearLayout>

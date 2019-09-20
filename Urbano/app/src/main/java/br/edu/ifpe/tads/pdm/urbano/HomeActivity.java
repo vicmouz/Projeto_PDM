@@ -2,6 +2,7 @@ package br.edu.ifpe.tads.pdm.urbano;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -32,6 +33,11 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             Toast.makeText(HomeActivity.this, "Error!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void buttonMapsClick(View view){
+        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+        startActivity(intent);
     }
 
     @Override

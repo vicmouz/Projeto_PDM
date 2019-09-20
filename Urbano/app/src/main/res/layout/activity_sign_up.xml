@@ -7,10 +7,22 @@
     tools:context=".auth.SignUpActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/text_realizar_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/titulo_cadastrar"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edit_name"
+        android:layout_marginTop="15dp"
         android:hint="@string/edit_name"
         android:inputType="text"/>
 
@@ -20,6 +32,7 @@
         android:id="@+id/edit_email"
         android:hint="@string/edit_email"
         android:inputType="textEmailAddress"/>
+
 
     <EditText
         android:layout_width="match_parent"
@@ -35,10 +48,22 @@
         android:text="@string/btn_cadastro"
         android:onClick="buttonSignUpClick"/>
 
+    <TextView
+        android:id="@+id/text_faca_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/ja_possui_conta"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/redirect_login"
-        android:text="@string/btn_login"
+        android:layout_marginTop="15dp"
+        android:text="@string/btn_realizar_login"
         android:onClick="redirect_login"/>
 </LinearLayout>

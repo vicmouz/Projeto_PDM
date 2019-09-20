@@ -7,6 +7,17 @@
     tools:context=".auth.SignInActivity"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/text_realizar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/titulo_logar"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,8 +35,26 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:id="@+id/btn_login"
         android:text="@string/btn_login"
         android:onClick="buttonSignInClick"/>
 
+    <TextView
+        android:id="@+id/text_faca_cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="@string/sem_cadastro"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_realizar_cadastro"
+        android:text="@string/btn_realizar_cadastro"
+        android:onClick="redirect_cadastrar"/>
 </LinearLayout>

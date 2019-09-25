@@ -11,11 +11,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class HomeActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseAuthListener authListener;
+
+    private static final Denuncia [] denuncias = {};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

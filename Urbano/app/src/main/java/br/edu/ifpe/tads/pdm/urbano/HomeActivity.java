@@ -1,24 +1,30 @@
 package br.edu.ifpe.tads.pdm.urbano;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
-import br.edu.ifpe.tads.pdm.urbano.MapsActivity;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
+import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
+import br.edu.ifpe.tads.pdm.urbano.fragmentos.MapaFragment;
+import br.edu.ifpe.tads.pdm.urbano.fragmentos.PerfilFragment;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     FirebaseAuth mAuth;
     FirebaseAuthListener authListener;
@@ -38,12 +44,27 @@ public class HomeActivity extends AppCompatActivity {
         this.mAuth = FirebaseAuth.getInstance();
         this.authListener = new FirebaseAuthListener(this);
 
+        this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
 
-        ListView listView = (ListView)findViewById(R.id.list_view);
+        getSupportActionBar().setElevation(0);
+
+        BottomNavigationView navView = findViewById(R.id.menu_bottom);
+        navView.setOnNavigationItemSelectedListener(this);
+
+        /*ListView listView = (ListView)findViewById(R.id.lista_denuncias);
         listView.setAdapter(new DenunciaArrayListAdapter(this,
                         R.layout.denuncia_listitem, denuncias
                 )
-        );
+        );*/
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.container_frag, new HomeFragment())
+                .commit();
+
+
+
     }
 
     public void buttonSignOutClick(View view) {
@@ -64,6 +85,38 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment fragment = null;
+
+        switch (menuItem.getItemId()){
+            case R.id.menu_home:
+                fragment = new HomeFragment();
+                break;
+            case R.id.menu_mapa:
+                fragment = new MapaFragment();
+                break;
+            case R.id.menu_perfil:
+                fragment = new PerfilFragment();
+                break;
+
+        }
+        if(fragment != null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container_frag, fragment)
+                    .commit();
+            return true;
+        }
+
+        return false;
+    }
+
+    /*@Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }*/
+
+    @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(authListener);
@@ -73,4 +126,6 @@ public class HomeActivity extends AppCompatActivity {
         super.onStop();
         mAuth.removeAuthStateListener(authListener);
     }
+
+
 }

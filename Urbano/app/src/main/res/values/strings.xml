@@ -1,30 +1,33 @@
 <resources>
     <!-- App/Activity -->
-        <string name="app_name">Urbano</string>
-        <string name="title_activity_maps">Map</string>
+    <string name="app_name">Urbano</string>
+    <string name="title_activity_maps">Map</string>
 
     <!-- Inputs -->
-        <string name="edit_name">Nome</string>
-        <string name="edit_email">Email</string>
-        <string name="edit_password">Senha</string>
+    <string name="edit_name">Nome</string>
+    <string name="edit_email">Email</string>
+    <string name="edit_password">Senha</string>
 
     <!-- SignIn -->
-        <string name="titulo_logar">Realize seu login! </string>
-        <string name="btn_login">Login</string>
-        <string name="btn_realizar_cadastro">Cadastre-se</string> <!-- Navega para a tela de cadastro -->
-        <string name="sem_cadastro">Ainda não é cadastrado?</string>
+    <string name="titulo_logar">Realize seu login! </string>
+    <string name="btn_login">Login</string>
+    <string name="btn_realizar_cadastro">Cadastre-se</string> <!-- Navega para a tela de cadastro -->
+    <string name="sem_cadastro">Ainda não é cadastrado?</string>
 
     <!-- SignUp -->
-        <string name="titulo_cadastrar">Realize seu cadastro! </string>
-        <string name="btn_cadastro">Cadastrar</string>
-        <string name="btn_realizar_login">Realize seu login</string>
-        <string name="ja_possui_conta">Se você já possui uma conta</string>
+    <string name="titulo_cadastrar">Realize seu cadastro! </string>
+    <string name="btn_cadastro">Cadastrar</string>
+    <string name="btn_realizar_login">Realize seu login</string>
+    <string name="ja_possui_conta">Se você já possui uma conta</string>
 
     <!-- Home -->
-        <string name="btn_deslogar">Deslogar</string>
+    <string name="btn_deslogar">Deslogar</string>
 
     <!-- CardDenuncia -->
-        <string name="btn_curtir">Curtir</string>
-        <string name="btn_comentar">Comentar</string>
+    <string name="btn_curtir">Curtir</string>
+    <string name="btn_comentar">Comentar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

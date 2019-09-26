@@ -14,6 +14,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
+import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
+import br.edu.ifpe.tads.pdm.urbano.MapsActivity;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class HomeActivity extends AppCompatActivity {
@@ -49,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             mAuth.signOut();
+            Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(HomeActivity.this, "Error!", Toast.LENGTH_SHORT).show();
         }

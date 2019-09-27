@@ -12,21 +12,21 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0pt"
+        android:layout_height="match_parent"
         map:uiCompass="true"
         map:uiZoomControls="true"
         map:mapType="normal"
         map:cameraZoom="10"
         tools:context=".MapsActivity" />
 
-    <Button
+    <!--Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:enabled="false"
+        android:enabled="true"
         android:onClick="currentLocation"
         android:text="Localização Atual"
-        android:id="@+id/button_location"/>
+        android:id="@+id/button_location"/-->
 
 </LinearLayout>
 

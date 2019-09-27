@@ -71,23 +71,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng joaopessoa = new LatLng(-7.12, -34.84);
 
 
+
         mMap.addMarker( new MarkerOptions().
                 position(recife).
                 title("Recife").
                 icon(BitmapDescriptorFactory.defaultMarker(35)));
 
-        mMap.addMarker( new MarkerOptions().
-                position(caruaru).
-                title("Caruaru").
-                icon(BitmapDescriptorFactory.defaultMarker(120)));
-
-        mMap.addMarker( new MarkerOptions().
-                position(joaopessoa).
-                title("João Pessoa").
-
-                icon(BitmapDescriptorFactory.defaultMarker(230)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(recife));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(12));
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override

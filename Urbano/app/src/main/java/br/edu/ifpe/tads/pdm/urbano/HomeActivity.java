@@ -9,14 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
@@ -24,7 +22,7 @@ import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.MapaFragment;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.PerfilFragment;
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth mAuth;
     FirebaseAuthListener authListener;
@@ -126,6 +124,5 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onStop();
         mAuth.removeAuthStateListener(authListener);
     }
-
 
 }

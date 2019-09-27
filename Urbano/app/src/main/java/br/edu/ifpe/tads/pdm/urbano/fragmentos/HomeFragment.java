@@ -45,16 +45,18 @@ public class HomeFragment extends Fragment{
                         R.layout.denuncia_listitem, denuncias
                 )
         );
+        
+    }
 
+    /*public void comentar(View view){
+        Fragment fragment = new DetailDenunciaFragment();
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.ver_detalhe, fragment)
+                .commit();
+    }*/
 
         /*Fragment fragment = new DenunciasFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.visualisar_listas, fragment).commit();*/
-
-
-    }
-
-
-
-
 
 }

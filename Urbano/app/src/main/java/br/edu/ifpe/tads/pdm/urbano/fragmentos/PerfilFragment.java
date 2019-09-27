@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import br.edu.ifpe.tads.pdm.urbano.AdicionarDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.HomeActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
@@ -51,4 +52,11 @@ public class PerfilFragment extends Fragment {
             Toast.makeText(getActivity(), "Error!", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void adicionarNovaDenuncia(View view){
+        Intent intent = new Intent(getActivity(), AdicionarDenunciaActivity.class);
+        startActivity(intent);
+    }
+
+
 }

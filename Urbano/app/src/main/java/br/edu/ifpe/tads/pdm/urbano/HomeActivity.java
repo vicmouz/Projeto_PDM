@@ -128,4 +128,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         mAuth.removeAuthStateListener(authListener);
     }
 
+    public void adicionarNovaDenuncia(View view){
+        Intent intent = new Intent(this, AdicionarDenunciaActivity.class);
+        startActivity(intent);
+    }
+
 }

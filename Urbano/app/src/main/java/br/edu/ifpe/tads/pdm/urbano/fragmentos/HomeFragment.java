@@ -18,12 +18,14 @@ import android.widget.Toast;
 
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Comentario;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 
 public class HomeFragment extends Fragment{
 
-    private static final Denuncia[] denuncias = {
+
+    private static final Denuncia [] denuncias = {
             new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora"),
             new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa")
 

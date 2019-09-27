@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Comentario;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.MapaFragment;
@@ -28,6 +29,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     FirebaseAuthListener authListener;
 
     private static final Denuncia [] denuncias = {
+            /*new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora", new Comentario("Esta sendo resolvido")),
+            new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa", new Comentario("Ta horrível"))*/
             new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora"),
             new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa")
 

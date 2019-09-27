@@ -12,9 +12,18 @@ public class Denuncia {
     private Long latitude;
     private Long longitude;
     private int curtidas;
-    private String[] comentarios;
+    private Comentario[] comentarios;
     private String status;
     private Byte[] foto;
+
+
+    public Denuncia (int id, String titulo, String descricao, Comentario comentario){
+        this.id = id;
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.criado_em = new Date();
+        this.comentarios[0] = comentario;
+    }
 
     public Denuncia (int id, String titulo, String descricao){
         this.id = id;

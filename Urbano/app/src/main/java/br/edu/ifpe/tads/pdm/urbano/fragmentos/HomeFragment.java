@@ -27,7 +27,8 @@ public class HomeFragment extends Fragment{
 
     private static final Denuncia [] denuncias = {
             new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora"),
-            new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa")
+            new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa"),
+
 
     };
 

@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class AdicionarDenunciaActivity extends AppCompatActivity {
 
@@ -19,6 +21,10 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
     }
 
     public void adicionarDenuncia(View view){
+
+        Denuncia denuncia = new Denuncia(1,"", "");
+
+
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }

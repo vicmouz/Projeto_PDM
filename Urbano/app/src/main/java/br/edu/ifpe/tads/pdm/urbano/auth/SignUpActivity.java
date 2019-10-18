@@ -14,13 +14,21 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import br.edu.ifpe.tads.pdm.urbano.R;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Usuario;
 
 public class SignUpActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseAuthListener authListener;
+    EditText edEmail;
+    EditText edPassword;
+    EditText edNome;
+    EditText edCPF;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,20 +39,34 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void buttonSignUpClick(View view) {
-        EditText edEmail = (EditText) findViewById(R.id.edit_email);
-        EditText edPassword = (EditText) findViewById(R.id.edit_password);
+        edEmail = (EditText) findViewById(R.id.edit_email);
+        edPassword = (EditText) findViewById(R.id.edit_password);
+        edNome = (EditText) findViewById(R.id.edit_name);
+        edCPF = (EditText) findViewById(R.id.edit_Cpf);
 
-        String email = edEmail.getText().toString();
-        String password = edPassword.getText().toString();
+        final String email = edEmail.getText().toString();
+        final String password = edPassword.getText().toString();
+        final String nome = edNome.getText().toString();
+        final String CPF = edCPF.getText().toString();
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        String msg = task.isSuccessful() ? "SIGN UP OK!": "SIGN UP ERROR";
+                        String msg = task.isSuccessful()? "Cadastro Realizado com Sucesso!": "Erro ao realizar cadastro";
 
                         Toast.makeText(SignUpActivity.this, msg, Toast.LENGTH_SHORT).show();
+
+                        if (task.isSuccessful()) {
+                            Usuario user = new Usuario(nome, email, CPF);
+                            DatabaseReference drUsers = FirebaseDatabase.
+                                    getInstance().getReference("users");
+                            drUsers.child(mAuth.getCurrentUser().getUid()).
+                                    setValue(user);
+                        }
+
+
                     }
                 });
     }

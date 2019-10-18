@@ -26,6 +26,15 @@
         android:hint="@string/edit_name"
         android:inputType="text"/>
 
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_Cpf"
+        android:hint="@string/CPF"
+        android:inputType="textEmailAddress"/>
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

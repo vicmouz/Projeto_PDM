@@ -9,7 +9,7 @@
         android:id="@+id/label_titulo"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Titulo:"/>
+        android:text="@string/titulo_label"/>
 
     <EditText
         android:id="@+id/titulo"
@@ -21,7 +21,7 @@
         android:id="@+id/label_descricao"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Descrição:"/>
+        android:text="@string/descricao_label"/>
 
     <EditText
         android:id="@+id/descricao"
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_adc_nova_denuncia"
-        android:text="Adicionar"
+        android:text="@string/adicionar_denuncia_btn"
         android:layout_marginRight="10dp"
         android:onClick="adicionarDenuncia"/>
 
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_cancelar"
-        android:text="Cancelar" />
+        android:text="@string/cancelar_btn" />
 
 
 </LinearLayout>

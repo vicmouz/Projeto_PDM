@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Titulo Denuncia" />
+                android:text="@string/titulo_denuncia" />
 
             <TextView
                 android:id="@+id/info_local"
@@ -26,8 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_below="@id/titulo_denuncia"
-                android:text="Localidade Denuncia"
-                />
+                android:text="@string/local_denuncia"/>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/foto"
@@ -44,7 +43,7 @@
                 android:layout_below="@+id/foto"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:text="5 curtidas" />
+                android:text="@string/qtd_curtidas" />
 
             <TextView
                 android:id="@+id/comentarios"
@@ -54,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/curtidas"
-                android:text="5 comentários" />
+                android:text="@string/qtd_comentarios" />
 
             <Button
                 android:id="@+id/btn_curtir"

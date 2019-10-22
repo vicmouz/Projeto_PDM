@@ -19,44 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"></FrameLayout>
 
 
-    <!--TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="Seja bem vindo"
-    android:id="@+id/txt_welcome"/>
-
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-
-
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/btn_adcDenuncia"
-    android:text="Adicionar Denuncia"
-    android:layout_marginBottom="15dp"/>
-
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_goToMaps"
-        android:text="Mapa"
-        android:onClick="buttonMapsClick"/>
-
-    <Button
-        android:id="@+id/btn_sair"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="buttonSignOutClick"
-        android:text="@string/btn_deslogar" />
-</LinearLayout-->
-
-
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu_bottom"
         android:layout_width="0dp"

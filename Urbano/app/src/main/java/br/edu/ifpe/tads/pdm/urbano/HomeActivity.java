@@ -93,9 +93,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.menu_home:
                 fragment = new HomeFragment();
                 break;
-            case R.id.menu_mapa:
-                fragment = new MapaFragment();
-                break;
             case R.id.menu_perfil:
                 fragment = new PerfilFragment();
                 break;

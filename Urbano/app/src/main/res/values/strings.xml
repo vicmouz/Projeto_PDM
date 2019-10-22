@@ -1,7 +1,7 @@
 <resources>
     <!-- App/Activity -->
     <string name="app_name">Urbano</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps">Mapa</string>
 
     <!-- Inputs -->
     <string name="edit_name">Nome</string>
@@ -32,7 +32,7 @@
 
     <string name="titulo_label">Titulo</string>
     <string name="descricao_label">Descrição:</string>
-    <string name="adicionar_denuncia_btn">Adicionar</string>
+    <string name="adicionar_denuncia_btn">Adicionar Denúncia</string>
     <string name="cancelar_btn">Cancelar</string>
     <string name="titulo_denuncia">Titulo Denuncia</string>
     <string name="local_denuncia">Localidade Denuncia</string>

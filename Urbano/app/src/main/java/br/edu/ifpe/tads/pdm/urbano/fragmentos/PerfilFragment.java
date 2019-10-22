@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,23 +19,21 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.AdicionarDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.HomeActivity;
+import br.edu.ifpe.tads.pdm.urbano.MapsActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
 
 
 public class PerfilFragment extends Fragment {
+    Button btn_mapa;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_perfil, null);
 
-
-
         return view;
     }
-
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -55,6 +54,11 @@ public class PerfilFragment extends Fragment {
 
     public void adicionarNovaDenuncia(View view){
         Intent intent = new Intent(getActivity(), AdicionarDenunciaActivity.class);
+        startActivity(intent);
+    }
+
+    public void visualizarMapa(View view){
+        Intent intent = new Intent(getActivity(), MapsActivity.class);
         startActivity(intent);
     }
 

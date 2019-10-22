@@ -17,8 +17,18 @@
             android:text="@string/adicionar_denuncia_btn"
             android:layout_below="@id/btn_sair"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="5dp"
             android:onClick="adicionarNovaDenuncia"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mapa_btn"
+            android:text="@string/title_activity_maps"
+            android:layout_below="@id/btn_sair"
+            android:layout_marginBottom="5dp"
+            android:onClick="buttonMapsClick"/>
+
 
         <Button
             android:id="@+id/btn_sair"
@@ -27,7 +37,6 @@
             android:onClick="buttonSignOutClick"
             android:text="@string/btn_deslogar" />
 
-
-
         </androidx.appcompat.widget.LinearLayoutCompat>
+
 </FrameLayout>

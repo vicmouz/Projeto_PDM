@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -31,8 +32,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private static final Denuncia [] denuncias = {
             /*new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora", new Comentario("Esta sendo resolvido")),
             new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa", new Comentario("Ta horrível"))*/
-            new Denuncia(1, "Falta de sinalização sonora", "Não há sinalização sonora"),
-            new Denuncia(2, "Ausência de rampas", "Não há rampas na faixa")
+            new Denuncia( "Falta de sinalização sonora", "Não há sinalização sonora"),
+            new Denuncia( "Ausência de rampas", "Não há rampas na faixa")
 
     };
 

@@ -18,27 +18,26 @@ public class Denuncia {
     private String nome;
 
 
-    public Denuncia (int id, String titulo, String descricao, Comentario comentario){
-        this.id = id;
+    /*public Denuncia (String titulo, String descricao, Comentario comentario){
         this.titulo = titulo;
         this.descricao = descricao;
         this.criado_em = new Date();
         this.comentarios[0] = comentario;
-    }
+    }*/
 
-    public Denuncia (int id, String titulo, String descricao){
-        this.id = id;
+    public Denuncia (String titulo, String descricao){
         this.titulo = titulo;
         this.descricao = descricao;
-        this.criado_em = new Date();
     }
 
-    public Denuncia(String titulo, String descricao, String nome){
+    public Denuncia(){}
+
+    /*public Denuncia(int curtidas, String titulo, String descricao, String nome, String status){
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = "Aguardando Análise";
         this.nome = nome;
-    }
+    }*/
 
     public int getId() {
         return id;

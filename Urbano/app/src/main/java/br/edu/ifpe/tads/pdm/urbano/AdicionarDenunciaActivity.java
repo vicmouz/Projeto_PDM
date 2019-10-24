@@ -64,6 +64,7 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                         Usuario tempUser = dataSnapshot.getValue(Usuario.class);
                         if (tempUser != null) {
                             AdicionarDenunciaActivity.this.usuario = tempUser;
+                            System.out.println("Nome usuario:" + tempUser.getNome());
 
                         }
                     }
@@ -72,10 +73,10 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) { }
                 });
 
-                FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
-                Denuncia denuncia = new Denuncia(titulo, descricao, "");
+                /*FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
+                Denuncia denuncia = new Denuncia(0, titulo, descricao, "", "");
                 drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
-                drDenuncia.setValue(denuncia);
+                drDenuncia.setValue(denuncia);*/
 
             }
         }
@@ -85,7 +86,7 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
 
     public void adicionarDenuncia(View view){
 
-        Denuncia denuncia = new Denuncia(1,"", "");
+        Denuncia denuncia = new Denuncia("", "");
 
 
         Intent intent = new Intent(this, HomeActivity.class);

@@ -7,7 +7,7 @@ public class Denuncia {
     private int id;
     private String titulo;
     private String descricao;
-    /*private Usuario criado_por;*/
+    //private Usuario criado_por;
     private Date criado_em;
     private Long latitude;
     private Long longitude;
@@ -15,6 +15,7 @@ public class Denuncia {
     private Comentario[] comentarios;
     private String status;
     private Byte[] foto;
+    private String nome;
 
 
     public Denuncia (int id, String titulo, String descricao, Comentario comentario){
@@ -30,6 +31,13 @@ public class Denuncia {
         this.titulo = titulo;
         this.descricao = descricao;
         this.criado_em = new Date();
+    }
+
+    public Denuncia(String titulo, String descricao, String nome){
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.status = "Aguardando Análise";
+        this.nome = nome;
     }
 
     public int getId() {
@@ -86,5 +94,45 @@ public class Denuncia {
 
     public void setFoto(Byte[] foto) {
         this.foto = foto;
+    }
+
+    /*public Usuario getCriado_por() {
+        return criado_por;
+    }
+
+    public void setCriado_por(Usuario criado_por) {
+        this.criado_por = criado_por;
+    }*/
+
+    public int getCurtidas() {
+        return curtidas;
+    }
+
+    public void setCurtidas(int curtidas) {
+        this.curtidas = curtidas;
+    }
+
+    public Comentario[] getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Comentario[] comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

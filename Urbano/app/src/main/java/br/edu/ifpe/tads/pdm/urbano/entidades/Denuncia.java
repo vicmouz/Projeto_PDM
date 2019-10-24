@@ -1,10 +1,10 @@
 package br.edu.ifpe.tads.pdm.urbano.entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Denuncia {
 
-    private int id;
     private String titulo;
     private String descricao;
     //private Usuario criado_por;
@@ -12,18 +12,12 @@ public class Denuncia {
     private Long latitude;
     private Long longitude;
     private int curtidas;
-    private Comentario[] comentarios;
+    private ArrayList<Comentario>comentarios;
     private String status;
     private Byte[] foto;
     private String nome;
 
 
-    /*public Denuncia (String titulo, String descricao, Comentario comentario){
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.criado_em = new Date();
-        this.comentarios[0] = comentario;
-    }*/
 
     public Denuncia (String titulo, String descricao){
         this.titulo = titulo;
@@ -32,19 +26,12 @@ public class Denuncia {
 
     public Denuncia(){}
 
-    /*public Denuncia(int curtidas, String titulo, String descricao, String nome, String status){
+    public Denuncia(String titulo, String descricao, Long lat, Long lgtd){
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = "Aguardando Análise";
-        this.nome = nome;
-    }*/
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.latitude = lat;
+        this.longitude = lgtd;
     }
 
     public String getTitulo() {
@@ -111,11 +98,11 @@ public class Denuncia {
         this.curtidas = curtidas;
     }
 
-    public Comentario[] getComentarios() {
+    public ArrayList<Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(Comentario[] comentarios) {
+    public void setComentarios(ArrayList<Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 

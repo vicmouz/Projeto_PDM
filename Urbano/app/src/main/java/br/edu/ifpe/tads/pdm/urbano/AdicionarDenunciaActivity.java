@@ -73,10 +73,10 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                     public void onCancelled(DatabaseError databaseError) { }
                 });
 
-                /*FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
-                Denuncia denuncia = new Denuncia(0, titulo, descricao, "", "");
+                FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
+                Denuncia denuncia = new Denuncia(titulo, descricao);
                 drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
-                drDenuncia.setValue(denuncia);*/
+                drDenuncia.setValue(denuncia);
 
             }
         }

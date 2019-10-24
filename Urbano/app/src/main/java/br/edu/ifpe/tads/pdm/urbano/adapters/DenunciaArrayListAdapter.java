@@ -7,14 +7,16 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class DenunciaArrayListAdapter extends ArrayAdapter<Denuncia> {
 
-    private Denuncia [] denuncias;
+    private ArrayList<Denuncia> denuncias;
 
-    public DenunciaArrayListAdapter(Context context, int resource, Denuncia[] denuncias) {
+    public DenunciaArrayListAdapter(Context context, int resource, ArrayList<Denuncia> denuncias) {
         super(context, resource, denuncias);
         this.denuncias = denuncias;
     }
@@ -25,8 +27,8 @@ public class DenunciaArrayListAdapter extends ArrayAdapter<Denuncia> {
 
         TextView tituloDenuncia = (TextView) listItem.findViewById(R.id.titulo_denuncia);
         TextView descricaoDenuncia = (TextView) listItem.findViewById(R.id.info_local);
-        tituloDenuncia.setText(denuncias[position].getTitulo());
-        descricaoDenuncia.setText(denuncias[position].getDescricao());
+        tituloDenuncia.setText(denuncias.get(position).getTitulo());
+        descricaoDenuncia.setText(denuncias.get(position).getDescricao());
 
         return listItem;
     }

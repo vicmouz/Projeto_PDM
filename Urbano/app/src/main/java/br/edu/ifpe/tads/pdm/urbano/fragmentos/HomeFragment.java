@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
@@ -27,20 +29,15 @@ import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class HomeFragment extends Fragment{
 
-    TextView teste;
 
+    private static final ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
 
-    private static final Denuncia [] denuncias = {
-            new Denuncia("Falta de sinalização sonora", "Não há sinalização sonora"),
-            new Denuncia("Ausência de rampas", "Não há rampas na faixa"),
-
-
-    };
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_home, null);
     }
 
@@ -56,8 +53,10 @@ public class HomeFragment extends Fragment{
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+
                 Denuncia denuncia = dataSnapshot.getValue(Denuncia.class);
-                System.out.println("DENUNCIAS: " + denuncia.getTitulo());
+                denuncias.add(denuncia);
+
             }
 
             @Override
@@ -74,7 +73,9 @@ public class HomeFragment extends Fragment{
         });
 
 
+
         ListView listView = view.findViewById(R.id.lista_denuncias);
+
         listView.setAdapter(new DenunciaArrayListAdapter(getActivity(),
                         R.layout.denuncia_listitem, denuncias
                 )

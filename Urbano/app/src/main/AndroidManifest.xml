@@ -11,14 +11,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AdicionarDenunciaActivity"></activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".auth.SignUpActivity">
+        <activity android:name=".auth.SignUpActivity"/>
+        <activity android:name=".auth.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".auth.SignInActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -34,6 +34,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCY_O0yov1626bDjqSgF0c19KyZGVA_kVc" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

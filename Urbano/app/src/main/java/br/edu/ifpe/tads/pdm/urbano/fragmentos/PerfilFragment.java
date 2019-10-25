@@ -57,10 +57,5 @@ public class PerfilFragment extends Fragment {
         startActivity(intent);
     }
 
-    public void visualizarMapa(View view){
-        Intent intent = new Intent(getActivity(), MapsActivity.class);
-        startActivity(intent);
-    }
-
 
 }

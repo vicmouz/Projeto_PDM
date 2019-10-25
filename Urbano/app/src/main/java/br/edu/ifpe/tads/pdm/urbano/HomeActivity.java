@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.urbano.auth.SignInActivity;
-import br.edu.ifpe.tads.pdm.urbano.entidades.Comentario;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 //import br.edu.ifpe.tads.pdm.urbano.fragmentos.MapaFragment;
@@ -74,7 +73,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     }
 
     public void buttonMapsClick(View view){
-        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

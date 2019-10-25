@@ -40,8 +40,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_adc_nova_denuncia"
         android:text="@string/adicionar_denuncia_btn"
-        android:layout_marginRight="10dp"
-        android:onClick="adicionarDenuncia"/>
+        android:layout_marginRight="10dp"/>
 
     <Button
         android:layout_width="wrap_content"

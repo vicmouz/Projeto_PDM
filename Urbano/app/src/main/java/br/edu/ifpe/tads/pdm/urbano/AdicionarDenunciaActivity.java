@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,15 +26,13 @@ import br.edu.ifpe.tads.pdm.urbano.entidades.Usuario;
 public class AdicionarDenunciaActivity extends AppCompatActivity {
 
     DatabaseReference drDenuncia;
-    DatabaseReference drUsuario;
-    FirebaseDatabase fbDB;
-
     Button btn_adcionar_denuncia;
 
     EditText titulo_denuncia;
     EditText descricao_denuncia;
 
-    Usuario usuario;
+    private static Usuario usuario = new Usuario();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,50 +46,39 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
+
         btn_adcionar_denuncia.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 final String titulo = titulo_denuncia.getText().toString();
                 final String descricao = descricao_denuncia.getText().toString();
-
+                final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();;
                 FirebaseUser fb_usuario = mAuth.getCurrentUser();
-                fbDB = FirebaseDatabase.getInstance();
-                drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
+                DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
 
-                final String nome;
 
                 drUsuario.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Usuario tempUser = dataSnapshot.getValue(Usuario.class);
-                        if (tempUser != null) {
-                            AdicionarDenunciaActivity.this.usuario = tempUser;
-                            System.out.println("Nome usuario:" + tempUser.getNome());
+                        usuario = dataSnapshot.getValue(Usuario.class);
 
-                        }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) { }
                 });
 
+
                 FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
-                Denuncia denuncia = new Denuncia(titulo, descricao);
+                Denuncia denuncia = new Denuncia(titulo, descricao, usuario);
                 drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
                 drDenuncia.setValue(denuncia);
+
+                Intent intent = new Intent(AdicionarDenunciaActivity.this, HomeActivity.class);
+                startActivity(intent);
 
             }
         }
 
         );
-    }
-
-    public void adicionarDenuncia(View view){
-
-        Denuncia denuncia = new Denuncia("", "");
-
-
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
     }
 
 

@@ -33,7 +33,6 @@ public class HomeFragment extends Fragment{
     private static final ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -77,7 +76,7 @@ public class HomeFragment extends Fragment{
         ListView listView = view.findViewById(R.id.lista_denuncias);
 
         listView.setAdapter(new DenunciaArrayListAdapter(getActivity(),
-                        R.layout.denuncia_listitem, denuncias
+                R.layout.denuncia_listitem, denuncias
                 )
         );
 

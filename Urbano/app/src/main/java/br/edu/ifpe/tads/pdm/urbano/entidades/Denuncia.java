@@ -7,7 +7,7 @@ public class Denuncia {
 
     private String titulo;
     private String descricao;
-    //private Usuario criado_por;
+    private Usuario criado_por;
     private Date criado_em;
     private Long latitude;
     private Long longitude;
@@ -19,20 +19,21 @@ public class Denuncia {
 
 
 
-    public Denuncia (String titulo, String descricao){
+    public Denuncia (String titulo, String descricao, Usuario user){
         this.titulo = titulo;
         this.descricao = descricao;
+        this.criado_por = user;
     }
 
     public Denuncia(){}
 
-    public Denuncia(String titulo, String descricao, Long lat, Long lgtd){
+    /*public Denuncia(String titulo, String descricao, Long lat, Long lgtd){
         this.titulo = titulo;
         this.descricao = descricao;
         this.status = "Aguardando Análise";
         this.latitude = lat;
         this.longitude = lgtd;
-    }
+    }*/
 
     public String getTitulo() {
         return titulo;
@@ -82,13 +83,13 @@ public class Denuncia {
         this.foto = foto;
     }
 
-    /*public Usuario getCriado_por() {
+    public Usuario getCriado_por() {
         return criado_por;
     }
 
     public void setCriado_por(Usuario criado_por) {
         this.criado_por = criado_por;
-    }*/
+    }
 
     public int getCurtidas() {
         return curtidas;

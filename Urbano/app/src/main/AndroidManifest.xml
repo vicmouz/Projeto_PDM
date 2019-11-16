@@ -9,9 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdicionarDenunciaActivity"></activity>
+        <activity android:name=".DetalheDenunciaActivity"></activity>
+        <activity android:name=".AdicionarDenunciaActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".auth.SignUpActivity"/>
+        <activity android:name=".auth.SignUpActivity" />
         <activity android:name=".auth.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,12 +30,15 @@
         -->
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCY_O0yov1626bDjqSgF0c19KyZGVA_kVc" />
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,12 +32,12 @@ public class HomeFragment extends Fragment{
 
 
     private static final ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
+    Button adicionarComentario;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_home, null);
     }
 
@@ -48,7 +49,6 @@ public class HomeFragment extends Fragment{
 
         final FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("denuncias");
-
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
@@ -72,7 +72,6 @@ public class HomeFragment extends Fragment{
         });
 
 
-
         ListView listView = view.findViewById(R.id.lista_denuncias);
 
         listView.setAdapter(new DenunciaArrayListAdapter(getActivity(),
@@ -80,18 +79,18 @@ public class HomeFragment extends Fragment{
                 )
         );
 
+        //Buscar nome do usuario da denuncia
+
+        //Buscar os comentarios e nome de usuarios
+
 
 
         
     }
 
-    /*public void comentar(View view){
-        Fragment fragment = new DetailDenunciaFragment();
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.ver_detalhe, fragment)
-                .commit();
-    }*/
+    public void realizarComentario(View view){
+
+    }
 
         /*Fragment fragment = new DenunciasFragment();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.visualisar_listas, fragment).commit();*/

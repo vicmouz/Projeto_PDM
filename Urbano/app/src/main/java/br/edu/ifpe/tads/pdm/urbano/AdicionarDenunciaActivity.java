@@ -52,25 +52,32 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                 final String titulo = titulo_denuncia.getText().toString();
                 final String descricao = descricao_denuncia.getText().toString();
                 final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();;
+
                 FirebaseUser fb_usuario = mAuth.getCurrentUser();
                 DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
 
 
                 drUsuario.addValueEventListener(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         usuario = dataSnapshot.getValue(Usuario.class);
 
+                        FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
+                        Denuncia denuncia = new Denuncia(titulo, descricao, usuario);
+                        drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
+                        drDenuncia.setValue(denuncia);
+                        //System.out.println("Nome: " + usuario.getNome());
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) { }
+
+
                 });
 
 
-                FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
-                Denuncia denuncia = new Denuncia(titulo, descricao, usuario);
-                drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
-                drDenuncia.setValue(denuncia);
+
 
                 Intent intent = new Intent(AdicionarDenunciaActivity.this, HomeActivity.class);
                 startActivity(intent);

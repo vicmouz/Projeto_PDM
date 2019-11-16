@@ -27,6 +27,7 @@ public class DenunciaArrayListAdapter extends ArrayAdapter<Denuncia> {
         this.context = context;
         this.denuncias = denuncias;
     }
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         View row = null;

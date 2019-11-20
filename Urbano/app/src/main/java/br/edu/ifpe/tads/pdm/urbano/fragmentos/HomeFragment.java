@@ -1,14 +1,19 @@
 package br.edu.ifpe.tads.pdm.urbano.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,8 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
+import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 
@@ -60,12 +67,32 @@ public class HomeFragment extends Fragment{
                     denuncias.add(denuncia);
                 }
 
-                ListView listView = view.findViewById(R.id.lista_denuncias);
+                RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.lista_denuncias2);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(new DenunciaListAdapter(getActivity(), denuncias));
+
+                /*ListView listView = view.findViewById(R.id.lista_denuncias);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, final View view,
+                                            int position, long id) {
+
+                        Denuncia denun = denuncias.get(position);
+
+                        Intent intent = new Intent(getActivity(), DetalheDenunciaActivity.class);
+                        intent.putExtra("DENUNCIA", denun.getTitulo());
+
+                        startActivity(intent);
+
+                    }
+                });
+
 
                 listView.setAdapter(new DenunciaArrayListAdapter(getActivity(),
                                 R.layout.denuncia_listitem, denuncias
                         )
-                );
+                );*/
 
 
             }
@@ -90,9 +117,6 @@ public class HomeFragment extends Fragment{
         
     }
 
-    public void realizarComentario(View view){
-
-    }
 
 
         /*Fragment fragment = new DenunciasFragment();

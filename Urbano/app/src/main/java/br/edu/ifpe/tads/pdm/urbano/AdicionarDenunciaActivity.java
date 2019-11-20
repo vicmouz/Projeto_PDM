@@ -20,6 +20,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import br.edu.ifpe.tads.pdm.urbano.entidades.Comentario;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Usuario;
 
@@ -51,7 +54,7 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
             public void onClick(View v){
                 final String titulo = titulo_denuncia.getText().toString();
                 final String descricao = descricao_denuncia.getText().toString();
-                final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();;
+                final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
 
                 FirebaseUser fb_usuario = mAuth.getCurrentUser();
                 DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
@@ -63,11 +66,15 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         usuario = dataSnapshot.getValue(Usuario.class);
 
-                        FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
-                        Denuncia denuncia = new Denuncia(titulo, descricao, usuario);
+                        FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();;
+                        Denuncia denuncia = new Denuncia();
+
+                        denuncia.setTitulo(titulo);
+                        denuncia.setDescricao(descricao);
+                        denuncia.setCriado_por(usuario);
+
                         drDenuncia = fbDB_Denuncia.getReference("denuncias").push();
                         drDenuncia.setValue(denuncia);
-                        //System.out.println("Nome: " + usuario.getNome());
 
                     }
                     @Override

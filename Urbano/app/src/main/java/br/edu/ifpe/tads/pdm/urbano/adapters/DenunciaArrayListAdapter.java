@@ -40,6 +40,7 @@ public class DenunciaArrayListAdapter extends ArrayAdapter<Denuncia> {
     Denuncia denuncia = denuncias.get(position);
         TextView tituloDenuncia = (TextView) row.findViewById(R.id.titulo_denuncia);
         TextView descricaoDenuncia = (TextView) row.findViewById(R.id.info_local);
+
         tituloDenuncia.setText(denuncia.getTitulo());
         descricaoDenuncia.setText(denuncia.getDescricao());
 

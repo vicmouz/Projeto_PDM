@@ -7,6 +7,8 @@ private String comentario;
 private Usuario usuario;
 
 
+    public Comentario(){}
+
     public Comentario(String comentario){
         this.comentario = comentario;
     }

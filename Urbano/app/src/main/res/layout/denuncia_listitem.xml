@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/parent_layout">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -72,43 +73,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_alignParentRight="true"
                 android:layout_toRightOf="@+id/btn_curtir"
-                android:text="@string/btn_comentar"/>
+                android:text="@string/btn_comentar"
+                android:onClick="detalheDenuncia"/>
 
         </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="297dp"
-        android:minHeight="200dp"
-        android:layout_marginTop="20dp">
-
-
-        <TextView
-            android:id="@+id/nome_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Nome Usuario"
-            android:layout_marginLeft="15dp"/>
-
-        <EditText
-            android:id="@+id/comentario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:inputType="text" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/comentario"
-            android:layout_marginTop="65dp"
-            android:text="@string/enviar"
-            android:onClick="realizarComentarario"
-            />
-
 
     </androidx.cardview.widget.CardView>
 

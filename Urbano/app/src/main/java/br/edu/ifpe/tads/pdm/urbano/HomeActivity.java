@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -45,11 +46,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView navView = findViewById(R.id.menu_bottom);
         navView.setOnNavigationItemSelectedListener(this);
 
-        /*ListView listView = (ListView)findViewById(R.id.lista_denuncias);
-        listView.setAdapter(new DenunciaArrayListAdapter(this,
-                        R.layout.denuncia_listitem, denuncias
-                )
-        );*/
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -101,10 +97,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         return false;
     }
 
-    /*@Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }*/
 
     @Override
     public void onStart() {
@@ -121,5 +113,14 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         Intent intent = new Intent(this, AdicionarDenunciaActivity.class);
         startActivity(intent);
     }
+
+    public void detalheDenuncia(View view){
+
+        Intent intent = new Intent(this, DetalheDenunciaActivity.class);
+        startActivity(intent);
+
+    }
+
+
 
 }

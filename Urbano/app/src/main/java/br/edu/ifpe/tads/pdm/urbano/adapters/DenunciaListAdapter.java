@@ -18,6 +18,7 @@ import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
@@ -25,10 +26,10 @@ import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
 public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapter.DenunciaHolder>{
 
-    ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
+    List<Denuncia> denuncias;
     private Context mContext;
 
-    public DenunciaListAdapter(Context context, ArrayList<Denuncia> denuncias){
+    public DenunciaListAdapter(Context context, List<Denuncia> denuncias){
         this.mContext = context;
         this.denuncias = denuncias;
 
@@ -50,6 +51,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetalheDenunciaActivity.class);
                 intent.putExtra("titulo_denuncia", denuncias.get(pos).getTitulo());
+                intent.putExtra("descricao_denuncia", denuncias.get(pos).getDescricao());
                 mContext.startActivity(intent);
 
             }

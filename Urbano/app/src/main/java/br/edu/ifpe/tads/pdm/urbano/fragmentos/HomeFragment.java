@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
@@ -39,7 +40,7 @@ import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 public class HomeFragment extends Fragment{
 
 
-    private static final ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
+    private static final List<Denuncia> denuncias = new ArrayList<Denuncia>();
     Button adicionarComentario;
 
 
@@ -71,28 +72,6 @@ public class HomeFragment extends Fragment{
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setAdapter(new DenunciaListAdapter(getActivity(), denuncias));
 
-                /*ListView listView = view.findViewById(R.id.lista_denuncias);
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, final View view,
-                                            int position, long id) {
-
-                        Denuncia denun = denuncias.get(position);
-
-                        Intent intent = new Intent(getActivity(), DetalheDenunciaActivity.class);
-                        intent.putExtra("DENUNCIA", denun.getTitulo());
-
-                        startActivity(intent);
-
-                    }
-                });
-
-
-                listView.setAdapter(new DenunciaArrayListAdapter(getActivity(),
-                                R.layout.denuncia_listitem, denuncias
-                        )
-                );*/
 
 
             }

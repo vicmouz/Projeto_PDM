@@ -66,7 +66,7 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         usuario = dataSnapshot.getValue(Usuario.class);
 
-                        FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();;
+                        FirebaseDatabase fbDB_Denuncia = FirebaseDatabase.getInstance();
                         Denuncia denuncia = new Denuncia();
 
                         denuncia.setTitulo(titulo);

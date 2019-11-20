@@ -2,6 +2,7 @@ package br.edu.ifpe.tads.pdm.urbano.entidades;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class Denuncia {
 
@@ -12,7 +13,7 @@ public class Denuncia {
     private Long latitude;
     private Long longitude;
     private int curtidas;
-    private ArrayList<Comentario>comentarios;
+    private HashMap<String, Comentario> comentarios;
     private String status;
     private Byte[] foto;
     private String nome;
@@ -27,13 +28,6 @@ public class Denuncia {
 
     public Denuncia(){}
 
-    /*public Denuncia(String titulo, String descricao, Long lat, Long lgtd){
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.status = "Aguardando Análise";
-        this.latitude = lat;
-        this.longitude = lgtd;
-    }*/
 
     public String getTitulo() {
         return titulo;
@@ -99,11 +93,11 @@ public class Denuncia {
         this.curtidas = curtidas;
     }
 
-    public ArrayList<Comentario> getComentarios() {
+    public HashMap<String, Comentario> getComentarios() {
         return comentarios;
     }
 
-    public void setComentarios(ArrayList<Comentario> comentarios) {
+    public void setComentarios(HashMap<String, Comentario> comentarios) {
         this.comentarios = comentarios;
     }
 

@@ -9,6 +9,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import br.edu.ifpe.tads.pdm.urbano.HomeActivity;
+import br.edu.ifpe.tads.pdm.urbano.MapsActivity;
 
 public class FirebaseAuthListener implements FirebaseAuth.AuthStateListener {
 
@@ -23,11 +24,11 @@ public class FirebaseAuthListener implements FirebaseAuth.AuthStateListener {
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         Intent intent = null;
-        if((user != null) && !(activity instanceof HomeActivity)) {
-            intent = new Intent(activity, HomeActivity.class);
+        if((user != null) && !(activity instanceof MapsActivity)) {
+            intent = new Intent(activity, MapsActivity.class);
         }
 
-        if ((user == null) && (activity instanceof HomeActivity)) {
+        if ((user == null) && (activity instanceof MapsActivity)) {
             intent = new Intent(activity, SignInActivity.class);
         }
 

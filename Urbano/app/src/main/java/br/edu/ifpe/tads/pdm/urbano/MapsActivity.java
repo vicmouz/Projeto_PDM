@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -29,13 +30,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Date;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
+import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
 
     private GoogleMap mMap;
     private int FINE_LOCATION_REQUEST;
     private boolean fine_location;
     FirebaseAuth mAuth;
+    private FusedLocationProviderClient fusedLocationProviderClient;
     FirebaseAuthListener authListener;
     private double lat = 0.0;
     private double lng = 0.0;
@@ -50,6 +53,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         requestPermission();
         currentLocation();
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        fusedLocationProviderClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            lat = location.getLatitude();
+                            lng = location.getLongitude();
+                        }
+                    }
+                });
+
 
          this.mAuth = FirebaseAuth.getInstance();
            this.authListener = new FirebaseAuthListener(this);
@@ -69,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        LatLng userLocation = new LatLng(-8.05, -34.9);
+        LatLng userLocation = new LatLng(this.lat, this.lng);
 
 
         mMap.addMarker( new MarkerOptions().
@@ -78,6 +94,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 icon(BitmapDescriptorFactory.defaultMarker(35)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
    }
 
     private void requestPermission() {
@@ -114,5 +133,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+    }
+
+    @Override
+    public void onMyLocationClick(@NonNull Location location) {
+        Toast.makeText(this, "Você está aqui!", Toast.LENGTH_SHORT).show();
+    }
+    @Override
+    public boolean onMyLocationButtonClick() {
+        Toast.makeText(this, "Indo para a sua localização.", Toast.LENGTH_SHORT).show();
+        return false;
+    }
+
+    public void redirectHome(View view) {
+        Intent homePage = new Intent(MapsActivity.this, HomeFragment.class);
+        startActivity(homePage);
     }
 }

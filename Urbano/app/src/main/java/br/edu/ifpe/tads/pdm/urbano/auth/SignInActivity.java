@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import br.edu.ifpe.tads.pdm.urbano.HomeActivity;
+import br.edu.ifpe.tads.pdm.urbano.MapsActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
 
 public class SignInActivity extends AppCompatActivity {
@@ -44,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(SignInActivity.this, MapsActivity.class);
                         startActivity(intent);
                     }
                 });

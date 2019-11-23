@@ -42,13 +42,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FirebaseAuth mAuth;
     private FusedLocationProviderClient fusedLocationProviderClient;
     FirebaseAuthListener authListener;
-    private double lat = 0.0;
-    private double lng = 0.0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        this.mAuth = FirebaseAuth.getInstance();
+        this.authListener = new FirebaseAuthListener(this);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+
+        mapFragment.getMapAsync(this);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         requestPermission();
         //currentLocation();
@@ -65,14 +73,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 });*/
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-
-        mapFragment.getMapAsync(this);
 
 
-         this.mAuth = FirebaseAuth.getInstance();
-         this.authListener = new FirebaseAuthListener(this);
 
 
 
@@ -220,5 +222,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void redirectHome(View view) {
         Intent homePage = new Intent(MapsActivity.this, HomeActivity.class);
         startActivity(homePage);
+    }
+
+    /*@Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authListener);
+    }*/
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authListener);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(authListener);
     }
 }

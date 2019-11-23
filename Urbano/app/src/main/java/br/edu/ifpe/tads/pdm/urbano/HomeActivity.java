@@ -98,7 +98,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     }
 
 
-    @Override
+   /* @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(authListener);
@@ -107,7 +107,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     public void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(authListener);
-    }
+    }*/
 
     public void adicionarNovaDenuncia(View view){
         Intent intent = new Intent(this, AdicionarDenunciaActivity.class);

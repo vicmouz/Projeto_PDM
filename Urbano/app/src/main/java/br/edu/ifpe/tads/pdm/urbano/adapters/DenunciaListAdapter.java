@@ -13,11 +13,6 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;

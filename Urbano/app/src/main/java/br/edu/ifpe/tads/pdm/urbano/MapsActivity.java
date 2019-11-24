@@ -224,17 +224,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startActivity(homePage);
     }
 
-    /*@Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(authListener);
-    }*/
-
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(authListener);
     }
+
     @Override
     public void onStop() {
         super.onStop();

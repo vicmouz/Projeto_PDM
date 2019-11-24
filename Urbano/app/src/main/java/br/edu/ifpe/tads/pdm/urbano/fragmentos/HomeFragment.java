@@ -1,6 +1,5 @@
 package br.edu.ifpe.tads.pdm.urbano.fragmentos;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,15 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;
 import br.edu.ifpe.tads.pdm.urbano.R;
-import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 
@@ -57,8 +47,8 @@ public class HomeFragment extends Fragment{
 
         final FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("denuncias");
-        ref.addValueEventListener(new ValueEventListener() {
 
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 denuncias.clear();

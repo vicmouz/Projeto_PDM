@@ -40,6 +40,10 @@
     <string name="qtd_curtidas">curtidas</string>
     <string name="qtd_comentarios">comentarios</string>
 
+    <string name="titulo_comentario">Comentarios</string>
+
+    <string name="comentario">Escreva um comentário...</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

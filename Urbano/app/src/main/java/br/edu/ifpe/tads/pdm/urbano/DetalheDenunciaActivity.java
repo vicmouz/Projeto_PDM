@@ -2,13 +2,12 @@ package br.edu.ifpe.tads.pdm.urbano;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,11 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-import br.edu.ifpe.tads.pdm.urbano.adapters.DenunciaListAdapter;
+import br.edu.ifpe.tads.pdm.urbano.adapters.ComentarioArrayListAdapter;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Comentario;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Usuario;
@@ -40,6 +37,7 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
     private static Usuario usuario = new Usuario();
     private static Denuncia denuncia = new Denuncia();
     private static final ArrayList<Denuncia> denuncias = new ArrayList<Denuncia>();
+    private static final ArrayList<Comentario> comentarios = new ArrayList<Comentario>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +46,9 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
 
 
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
+        FirebaseUser fb_usuario = mAuth.getCurrentUser();
+        final DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
 
         view_titulo = (TextView) findViewById(R.id.denuncia_titulo);
         view_descricao = (TextView) findViewById(R.id.info_local);
@@ -66,29 +67,66 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Denuncia denuncia = postSnapshot.getValue(Denuncia.class);
-                    denunciaKey = postSnapshot.getKey();
 
                         if(denuncia.getTitulo().equals(titulo_denuncia)){
                             view_titulo.setText(denuncia.getTitulo());
                             view_descricao.setText(denuncia.getDescricao());
+                            denunciaKey = postSnapshot.getKey();
 
+                            DatabaseReference drComentario = fbDB.getReference("denuncias/" + denunciaKey + "/comentarios");
+
+                            drComentario.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    comentarios.clear();
+
+                                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                        Comentario comentario = postSnapshot.getValue(Comentario.class);
+                                        dataSnapshot.getKey();
+                                        comentarios.add(comentario);
+
+                                    }
+
+                                    ListView listView = findViewById(R.id.lista_comentarios);
+                                    listView.setAdapter(new ComentarioArrayListAdapter(getBaseContext(),
+                                            R.layout.comentarios_listitem, comentarios)
+                                    );
+                                    Helper.getListViewSize(listView);
+
+
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+
+                            });
 
                         }
 
                 }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
+        //Buscar comentario
+
 
 
         //Adicionar comentario
         btn_comentar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final String comment = comentario.getText().toString();
-
-                final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
-                FirebaseUser fb_usuario = mAuth.getCurrentUser();
-
-                DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
                 final DatabaseReference drDenuncia = fbDB.getReference("denuncias/" + denunciaKey + "/comentarios");
-
 
                 //Obtem o usuario
                 drUsuario.addValueEventListener(new ValueEventListener() {
@@ -109,29 +147,8 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                     }
                 });
 
-                /*drDenuncia.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            denuncia = postSnapshot.getValue(Denuncia.class);
-
-                            if(denuncia.getTitulo().equals(titulo_denuncia)){
-                                Comentario comentario_usuario = new Comentario();
-                                comentario_usuario.setComentario(comment);
-                                comentario_usuario.setUsuario(usuario);
-
-                            }
-                        }
 
 
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });*/
 
 
             }
@@ -140,25 +157,6 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-                /*RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.lista_denuncias2);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setAdapter(new DenunciaListAdapter(getActivity(), denuncias));*/
-
-
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-
-        });
 
     }
 

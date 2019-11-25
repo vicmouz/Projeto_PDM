@@ -139,12 +139,14 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                         comentario_usuario.setUsuario(usuario);
 
                         drDenuncia.push().setValue(comentario_usuario);
+                        comentario.setText("");
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
+
                 });
 
 

@@ -101,10 +101,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     LatLng userLocation = new LatLng(latitude, longitude);
 
-                    mMap.addMarker( new MarkerOptions().
+                    /*mMap.addMarker( new MarkerOptions().
                             position(userLocation).
                             title("Sua localização").
-                            icon(BitmapDescriptorFactory.defaultMarker(35)));
+                            icon(BitmapDescriptorFactory.defaultMarker(35)));*/
 
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
                 }
@@ -142,17 +142,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
 
-        /*DatabaseReference drDenuncias = FirebaseDatabase.getInstance().getReference("denuncias");
+        DatabaseReference drDenuncias = FirebaseDatabase.getInstance().getReference("denuncias");
         drDenuncias.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                  final Denuncia currDenuncia = postSnapshot.getValue(Denuncia.class);
-                    Log.e("Get Data", currDenuncia.getNome());
-
-                    LatLng latLng = new LatLng(currDenuncia.getLatitude(), currDenuncia.getLongitude());
-                    Marker marker = googleMap.addMarker(new MarkerOptions().position(latLng).title(currDenuncia.getTitulo()));
-                    marker.setTag(currDenuncia);
+                   Denuncia currDenuncia = postSnapshot.getValue(Denuncia.class);
+                    System.out.println(currDenuncia.getTitulo());
+                    LatLng marker = new LatLng(currDenuncia.getLatitude(),currDenuncia.getLongitude());
+                    mMap.addMarker( new MarkerOptions().
+                            position(marker).
+                            title(currDenuncia.getTitulo()).
+                            icon(BitmapDescriptorFactory.defaultMarker(0)));
 
                 }
             }
@@ -161,7 +162,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
    }
 
     private void requestPermission() {

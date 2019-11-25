@@ -36,6 +36,8 @@
     <string name="adicionar_denuncia_btn">Adicionar Denúncia</string>
     <string name="cancelar_btn">Cancelar</string>
     <string name="titulo_denuncia">Titulo Denuncia</string>
+    <string name="latitude_denuncia">Latitude</string>
+    <string name="longitude_denuncia">Latitude</string>
     <string name="local_denuncia">Localidade Denuncia</string>
     <string name="qtd_curtidas">curtidas</string>
     <string name="qtd_comentarios">comentarios</string>

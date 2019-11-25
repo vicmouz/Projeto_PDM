@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,10 +28,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
+import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
 import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
@@ -39,6 +46,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private int FINE_LOCATION_REQUEST;
     private boolean fine_location;
+    String titulo_denuncia;
+    Double lat_denuncia;
+    Double lng_denuncia;
     FirebaseAuth mAuth;
     private FusedLocationProviderClient fusedLocationProviderClient;
     FirebaseAuthListener authListener;
@@ -59,26 +69,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         requestPermission();
-        //currentLocation();
-        /*fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        fusedLocationProviderClient.getLastLocation()
-                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            lat = location.getLatitude();
-                            lng = location.getLongitude();
-                        }
-                    }
-                });*/
-
-
-
-
-
-
-    }
+        }
 
 
     /**
@@ -91,7 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * installed Google Play services and returned to the app.
      */
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         mMap = googleMap;
 
         FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -104,9 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 double longitude;
 
                 if(location!=null) {
-                    /*Toast.makeText(MapsActivity.this, "Localização atual: Latitude = " +
-                            location.getLatitude() + " Longitude = " +
-                            location.getLongitude(), Toast.LENGTH_SHORT).show();*/
+
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
 
@@ -117,16 +106,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             title("Sua localização").
                             icon(BitmapDescriptorFactory.defaultMarker(35)));
 
-                    mMap.addMarker( new MarkerOptions().
-                            position(userLocation).
-                            title("Sua localização").
-                            icon(BitmapDescriptorFactory.defaultMarker(35)));
-
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
-
-
                 }
-
             }
 
 
@@ -148,19 +129,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                mMap.addMarker(new MarkerOptions().
-                        position(latLng).
-                        title("Adicionado em " + new Date()).
-
-                        icon(BitmapDescriptorFactory.defaultMarker(0)));
-
+                //System.out.println("Latitude: "+latLng.latitude);
+                //System.out.println("Longitude: " + latLng.longitude);
+                Intent intent = new Intent(MapsActivity.this, AdicionarDenunciaActivity.class);
+                intent.putExtra("latitude", latLng.latitude);
+                intent.putExtra("longitude", latLng.longitude);
+                startActivity(intent);
             }
         });
 
-        //mMap.setMyLocationEnabled(true);
+        mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
 
+        /*DatabaseReference drDenuncias = FirebaseDatabase.getInstance().getReference("denuncias");
+        drDenuncias.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
+                  final Denuncia currDenuncia = postSnapshot.getValue(Denuncia.class);
+                    Log.e("Get Data", currDenuncia.getNome());
+
+                    LatLng latLng = new LatLng(currDenuncia.getLatitude(), currDenuncia.getLongitude());
+                    Marker marker = googleMap.addMarker(new MarkerOptions().position(latLng).title(currDenuncia.getTitulo()));
+                    marker.setTag(currDenuncia);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
    }
 
     private void requestPermission() {
@@ -178,7 +179,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
 
-        findViewById(R.id.button_current_location).setEnabled(fine_location);
 
         boolean granted = (grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED);
         fine_location = (requestCode == FINE_LOCATION_REQUEST) && granted;
@@ -186,36 +186,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setMyLocationEnabled(fine_location);
     }
 
-    /*public void currentLocation() {
-        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        Task<Location> task = fusedLocationProviderClient.getLastLocation();
 
-        double longitude;
-
-        task.addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if(location!=null) {
-                    Toast.makeText(MapsActivity.this, "Localização atual: Latitude = " +
-                            location.getLatitude() + " Longitude = " +
-                            location.getLongitude(), Toast.LENGTH_SHORT).show();
-                    this.lat = location.getLatitude();
-                    this.lng = location.getLongitude();
-                    System.out.println("Lat: " + lat + " Lng: " + lng);
-                }
-            }
-        });
-
-
-    }*/
 
     @Override
     public void onMyLocationClick(@NonNull Location location) {
-        Toast.makeText(this, "Você está aqui!", Toast.LENGTH_SHORT).show();
+        System.out.println("Indo para a localização do usuário");
     }
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "Indo para a sua localização.", Toast.LENGTH_SHORT).show();
+
         return false;
     }
 

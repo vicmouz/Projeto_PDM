@@ -19,14 +19,7 @@
         map:cameraZoom="10"
         tools:context=".MapsActivity" />
 
-    <Button
-        android:id="@+id/button_current_location"
-        android:text="Localização Atual"
-        android:onClick="currentLocation"
-        android:enabled="false"
-        android:layout_weight="0"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"/>
+
 
     <Button
         android:id="@+id/button_location"

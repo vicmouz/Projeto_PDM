@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,9 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
 
     EditText titulo_denuncia;
     EditText descricao_denuncia;
+    TextView latitude_denuncia;
+    TextView longitude_denuncia;
+
 
     private static Usuario usuario = new Usuario();
 
@@ -42,8 +46,20 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_denuncia);
 
+        //Pega a intent de outra activity
+        Intent intent = getIntent();
+        final Double lat = intent.getDoubleExtra("latitude", 0.0);
+        final Double lng = intent.getDoubleExtra("longitude", 0.0);
+
+        System.out.println("Latitude recebida: " + lat);
+        System.out.println("Longitude recebida: " + lng);
+
         titulo_denuncia = (EditText) findViewById(R.id.titulo);
         descricao_denuncia = (EditText) findViewById(R.id.descricao);
+        latitude_denuncia = (EditText) findViewById(R.id.latitudeDenuncia);
+        longitude_denuncia = (EditText) findViewById(R.id.longitudeDenuncia);
+        latitude_denuncia.setText(lat.toString());
+        longitude_denuncia.setText(lng.toString());
         btn_adcionar_denuncia = findViewById(R.id.btn_adc_nova_denuncia);
 
         final FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -54,6 +70,8 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
             public void onClick(View v){
                 final String titulo = titulo_denuncia.getText().toString();
                 final String descricao = descricao_denuncia.getText().toString();
+                final String latDenuncia = latitude_denuncia.getText().toString();
+                final String lngDenuncia = longitude_denuncia.getText().toString();
                 final FirebaseDatabase fbDB = FirebaseDatabase.getInstance();
 
                 FirebaseUser fb_usuario = mAuth.getCurrentUser();
@@ -71,6 +89,8 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
 
                         denuncia.setTitulo(titulo);
                         denuncia.setDescricao(descricao);
+                        denuncia.setLatitude(Double.parseDouble(latDenuncia));
+                        denuncia.setLongitude(Double.parseDouble(lngDenuncia));
                         denuncia.setCriado_por(usuario);
 
                         drDenuncia = fbDB_Denuncia.getReference("denuncias").push();

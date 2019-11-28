@@ -116,4 +116,10 @@ public class AdicionarDenunciaActivity extends AppCompatActivity {
     }
 
 
+    public void btnCancelar(View view){
+        Intent intent = new Intent(this, HomeActivity.class);
+        startActivity(intent);
+    }
+
+
 }

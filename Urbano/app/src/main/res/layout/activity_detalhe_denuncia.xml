@@ -18,23 +18,24 @@
                     android:id="@+id/denuncia_titulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textStyle="bold"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/titulo_denuncia" />
 
                 <TextView
-                    android:id="@+id/info_local"
+                    android:id="@+id/descricao_denuncia"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25dp"
                     android:layout_below="@id/denuncia_titulo"
-                    android:text="@string/local_denuncia"/>
+                    android:text="@string/descricao_denuncia"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/foto"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_below="@id/info_local"
+                    android:layout_below="@id/descricao_denuncia"
                     android:layout_marginTop="10dp"
                     android:background="@color/cinza"/>
 
@@ -70,6 +71,8 @@
                     android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
+                    android:onClick="curtir"
                     android:text="@string/btn_curtir" />
 
                 <!--Button
@@ -89,14 +92,18 @@
                     android:layout_marginLeft="15dp"
                     android:layout_below="@id/btn_curtir"
                     android:layout_marginTop="10dp"
-                    android:text="Nome Usuario" />
+                    android:text="Nome Usuario"
+                    android:textStyle="bold"/>
 
                 <EditText
                     android:id="@+id/comentario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
                     android:hint="@string/comentario"
-                    android:inputType="text" />
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLength="2000"
+                    android:maxLines="4"/>
 
 
                 <Button
@@ -104,8 +111,8 @@
                     android:layout_width="190dp"
                     android:layout_height="50dp"
                     android:layout_below="@id/comentario"
+                    android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
                     android:onClick="realizarComentarario"
                     android:text="@string/enviar" />
 
@@ -114,12 +121,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginLeft="15dp"
                     android:text="@string/titulo_comentario" />
 
                 <ListView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/lista_comentarios"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp">
 
 

@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import br.edu.ifpe.tads.pdm.urbano.adapters.ComentarioArrayListAdapter;
@@ -28,11 +30,15 @@ import br.edu.ifpe.tads.pdm.urbano.entidades.Usuario;
 public class DetalheDenunciaActivity extends AppCompatActivity {
 
     Button btn_comentar;
+    Button btn_curtir;
     EditText comentario;
     TextView view_titulo;
     TextView view_descricao;
+    TextView view_usuario;
+    TextView view_curtidas;
     String titulo_denuncia;
     String denunciaKey;
+
 
     private static Usuario usuario = new Usuario();
     private static Denuncia denuncia = new Denuncia();
@@ -51,15 +57,34 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
         final DatabaseReference drUsuario = fbDB.getReference("users/" + fb_usuario.getUid());
 
         view_titulo = (TextView) findViewById(R.id.denuncia_titulo);
-        view_descricao = (TextView) findViewById(R.id.info_local);
+        view_descricao = (TextView) findViewById(R.id.descricao_denuncia);
+        view_usuario = (TextView) findViewById(R.id.nome_usuario) ;
+        view_curtidas = (TextView) findViewById(R.id.curtidas);
         btn_comentar = (Button) findViewById(R.id.btn_enviar_comentario);
+        btn_curtir = (Button) findViewById(R.id.btn_curtir);
         comentario = (EditText) findViewById(R.id.comentario);
         titulo_denuncia = getIntent().getStringExtra("titulo_denuncia");
 
 
+        //Recuperar Usuario
+        drUsuario.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usuario = dataSnapshot.getValue(Usuario.class);
+                view_usuario.setText(usuario.getNome() + ": ");
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+
+
+        });
+
         //Recuperar denuncia
         final FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("denuncias");
+        final DatabaseReference ref = db.getReference("denuncias");
+
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,6 +96,7 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                         if(denuncia.getTitulo().equals(titulo_denuncia)){
                             view_titulo.setText(denuncia.getTitulo());
                             view_descricao.setText(denuncia.getDescricao());
+                            view_curtidas.setText(denuncia.getCurtidas() + " curtidas");
                             denunciaKey = postSnapshot.getKey();
 
                             DatabaseReference drComentario = fbDB.getReference("denuncias/" + denunciaKey + "/comentarios");
@@ -93,9 +119,6 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                                     );
                                     Helper.getListViewSize(listView);
 
-
-
-
                                 }
 
                                 @Override
@@ -117,10 +140,6 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
             }
 
         });
-
-        //Buscar comentario
-
-
 
         //Adicionar comentario
         btn_comentar.setOnClickListener(new View.OnClickListener() {
@@ -150,13 +169,42 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                 });
 
 
-
-
-
             }
 
         });
 
+        //Curtir denuncia
+        btn_curtir.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                final DatabaseReference drCurtidas = fbDB.getReference("denuncias/" + denunciaKey);
+                drCurtidas.addValueEventListener(new ValueEventListener() {
+                    int curtidas;
+                    int count = 0;
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Denuncia denuncia = dataSnapshot.getValue(Denuncia.class);
+                        curtidas = denuncia.getCurtidas();
+                        if(count == 0){
+                            denuncia.setCurtidas(curtidas + 1);
+                            drCurtidas.setValue(denuncia);
+                            count++;
+                        }
+
+
+                    }
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
+
+            }
+        });
 
 
 

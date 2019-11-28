@@ -46,7 +46,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetalheDenunciaActivity.class);
                 intent.putExtra("titulo_denuncia", denuncias.get(pos).getTitulo());
-                intent.putExtra("descricao_denuncia", denuncias.get(pos).getDescricao());
+                //intent.putExtra("descricao_denuncia", denuncias.get(pos).getDescricao());
                 mContext.startActivity(intent);
 
             }
@@ -71,7 +71,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             super(itemView);
 
             titulo = itemView.findViewById(R.id.titulo_denuncia);
-            descricao = itemView.findViewById(R.id.info_local);
+            //descricao = itemView.findViewById(R.id.info_local);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
@@ -79,7 +79,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             this.denuncia = denuncia;
 
             titulo.setText(denuncia.getTitulo());
-            descricao.setText(denuncia.getDescricao());
+            //descricao.setText(denuncia.getDescricao());
 
         }
     }

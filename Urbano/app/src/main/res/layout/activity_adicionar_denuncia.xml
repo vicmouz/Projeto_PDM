@@ -27,7 +27,10 @@
         android:id="@+id/descricao"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:inputType="text"/>
+        android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="2000"
+        android:maxLines="4"
+        />
 
     <TextView
         android:id="@+id/label_latitude"
@@ -69,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_cancelar"
+        android:onClick="btnCancelar"
         android:text="@string/cancelar_btn" />
 
 

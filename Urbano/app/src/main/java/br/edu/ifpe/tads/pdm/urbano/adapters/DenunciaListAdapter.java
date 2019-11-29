@@ -63,6 +63,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
 
         TextView titulo;
         TextView descricao;
+        TextView curtidas;
         LinearLayout parentLayout;
 
         private Denuncia denuncia;
@@ -72,6 +73,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
 
             titulo = itemView.findViewById(R.id.titulo_denuncia);
             //descricao = itemView.findViewById(R.id.info_local);
+            curtidas = itemView.findViewById(R.id.curtidas);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
@@ -79,6 +81,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             this.denuncia = denuncia;
 
             titulo.setText(denuncia.getTitulo());
+            curtidas.setText(denuncia.getCurtidas() + " curtidas");
             //descricao.setText(denuncia.getDescricao());
 
         }

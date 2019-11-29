@@ -1,5 +1,7 @@
 package br.edu.ifpe.tads.pdm.urbano.entidades;
 
+import android.net.Uri;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,16 +17,17 @@ public class Denuncia {
     private int curtidas;
     private HashMap<String, Comentario> comentarios;
     private String status;
-    private Byte[] foto;
+    private String foto;
     private String nome;
 
 
 
-    public Denuncia (String titulo, String descricao, Double latitude , Double longitude,Usuario user){
+    public Denuncia (String titulo, String descricao, Double latitude , Double longitude, String foto,Usuario user){
         this.titulo = titulo;
         this.descricao = descricao;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.foto = foto;
         this.criado_por = user;
     }
 
@@ -71,11 +74,11 @@ public class Denuncia {
         this.longitude = longitude;
     }
 
-    public Byte[] getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(Byte[] foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
@@ -117,5 +120,10 @@ public class Denuncia {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getLargeImageUrl(String imageUrl) {
+        String largeImageUrl = imageUrl.substring(0, imageUrl.length() - 6).concat("o.jpg");
+        return largeImageUrl;
     }
 }

@@ -42,6 +42,9 @@
     <string name="qtd_curtidas">curtidas</string>
     <string name="qtd_comentarios">comentarios</string>
     <string name="goToMapa">Adicionar localização</string>
+    <string name="escolher">Escolher</string>
+    <string name="imagem_label">Imagem:</string>
+    <string name="tirar_foto">Adicionar foto</string>
 
     <string name="titulo_comentario">Comentarios</string>
 
@@ -49,5 +52,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

@@ -2,10 +2,14 @@ package br.edu.ifpe.tads.pdm.urbano.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.List;
 
 import br.edu.ifpe.tads.pdm.urbano.DetalheDenunciaActivity;
@@ -46,7 +51,6 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, DetalheDenunciaActivity.class);
                 intent.putExtra("titulo_denuncia", denuncias.get(pos).getTitulo());
-                //intent.putExtra("descricao_denuncia", denuncias.get(pos).getDescricao());
                 mContext.startActivity(intent);
 
             }
@@ -64,6 +68,7 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
         TextView titulo;
         TextView descricao;
         TextView curtidas;
+        ImageView imageView;
         LinearLayout parentLayout;
 
         private Denuncia denuncia;
@@ -72,8 +77,8 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
             super(itemView);
 
             titulo = itemView.findViewById(R.id.titulo_denuncia);
-            //descricao = itemView.findViewById(R.id.info_local);
             curtidas = itemView.findViewById(R.id.curtidas);
+            imageView = itemView.findViewById(R.id.imageView);
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
 
@@ -82,8 +87,18 @@ public class DenunciaListAdapter extends RecyclerView.Adapter<DenunciaListAdapte
 
             titulo.setText(denuncia.getTitulo());
             curtidas.setText(denuncia.getCurtidas() + " curtidas");
-            //descricao.setText(denuncia.getDescricao());
-
+            try {
+                Bitmap image = decodeFromFirebaseBase64(denuncia.getFoto());
+                System.out.println(image.toString());
+                imageView.setImageBitmap(image);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+    }
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        System.out.println("Antes: " + image);
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 }

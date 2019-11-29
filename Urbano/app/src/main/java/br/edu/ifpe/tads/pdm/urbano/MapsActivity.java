@@ -1,19 +1,17 @@
 package br.edu.ifpe.tads.pdm.urbano;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -34,11 +32,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-
 import br.edu.ifpe.tads.pdm.urbano.auth.FirebaseAuthListener;
 import br.edu.ifpe.tads.pdm.urbano.entidades.Denuncia;
-import br.edu.ifpe.tads.pdm.urbano.fragmentos.HomeFragment;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener, GoogleMap.OnMyLocationClickListener{
 
@@ -100,12 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     longitude = location.getLongitude();
 
                     LatLng userLocation = new LatLng(latitude, longitude);
-
-                    /*mMap.addMarker( new MarkerOptions().
-                            position(userLocation).
-                            title("Sua localização").
-                            icon(BitmapDescriptorFactory.defaultMarker(35)));*/
-
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
                 }
             }
@@ -129,8 +118,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                //System.out.println("Latitude: "+latLng.latitude);
-                //System.out.println("Longitude: " + latLng.longitude);
                 Intent intent = new Intent(MapsActivity.this, AdicionarDenunciaActivity.class);
                 intent.putExtra("latitude", latLng.latitude);
                 intent.putExtra("longitude", latLng.longitude);

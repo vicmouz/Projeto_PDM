@@ -34,10 +34,19 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/foto"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/descricao_denuncia"
                     android:layout_marginTop="10dp"
-                    android:background="@color/cinza"/>
+                    android:background="@color/cinza">
+
+                    <ImageView
+                        android:layout_width="400dp"
+                        android:layout_height="350dp"
+                        android:id="@+id/imageView"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true" />
+
+                </androidx.cardview.widget.CardView>
 
                 <RelativeLayout
                     android:layout_width="match_parent"

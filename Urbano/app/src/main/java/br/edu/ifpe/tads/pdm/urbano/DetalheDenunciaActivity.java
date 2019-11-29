@@ -3,10 +3,14 @@ package br.edu.ifpe.tads.pdm.urbano;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -20,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import br.edu.ifpe.tads.pdm.urbano.adapters.ComentarioArrayListAdapter;
@@ -35,6 +40,7 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
     TextView view_titulo;
     TextView view_descricao;
     TextView view_usuario;
+    ImageView imageView;
     TextView view_curtidas;
     String titulo_denuncia;
     String denunciaKey;
@@ -63,6 +69,7 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
         btn_comentar = (Button) findViewById(R.id.btn_enviar_comentario);
         btn_curtir = (Button) findViewById(R.id.btn_curtir);
         comentario = (EditText) findViewById(R.id.comentario);
+        imageView = (ImageView) findViewById(R.id.imageView);
         titulo_denuncia = getIntent().getStringExtra("titulo_denuncia");
 
 
@@ -96,6 +103,15 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
                         if(denuncia.getTitulo().equals(titulo_denuncia)){
                             view_titulo.setText(denuncia.getTitulo());
                             view_descricao.setText(denuncia.getDescricao());
+
+                                try {
+                                    Bitmap image = decodeFromFirebaseBase64(denuncia.getFoto());
+                                    System.out.println(image.toString());
+                                    imageView.setImageBitmap(image);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
                             view_curtidas.setText(denuncia.getCurtidas() + " curtidas");
                             denunciaKey = postSnapshot.getKey();
 
@@ -208,6 +224,12 @@ public class DetalheDenunciaActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        System.out.println("Antes: " + image);
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
 

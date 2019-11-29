@@ -55,10 +55,18 @@
         android:layout_height="wrap_content"
         android:editable="false"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_mapa"
+        android:onClick="btnGoToMap"
+        android:text="@string/goToMapa" />
+
 
 <LinearLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
     android:orientation="horizontal">
 
     <Button
@@ -72,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_cancelar"
-        android:onClick="btnCancelar"
+        android:layout_marginLeft="10dp"
         android:text="@string/cancelar_btn" />
 
 

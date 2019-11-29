@@ -34,13 +34,14 @@
     <string name="titulo_label">Titulo</string>
     <string name="descricao_label">Descrição:</string>
     <string name="adicionar_denuncia_btn">Adicionar Denúncia</string>
-    <string name="cancelar_btn">Cancelar</string>
+    <string name="cancelar_btn">Voltar</string>
     <string name="titulo_denuncia">Titulo Denuncia</string>
     <string name="latitude_denuncia">Latitude</string>
     <string name="longitude_denuncia">Latitude</string>
     <string name="descricao_denuncia">Descricao Denuncia</string>
     <string name="qtd_curtidas">curtidas</string>
     <string name="qtd_comentarios">comentarios</string>
+    <string name="goToMapa">Adicionar localização</string>
 
     <string name="titulo_comentario">Comentarios</string>
 
